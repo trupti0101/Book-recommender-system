@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+{% load static %}
+{% block blk %}
+			<!-- /TOP HEADER -->
+
+			<!-- MAIN HEADER -->
+			<div id="header">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<!-- LOGO -->
+						<div class="col-md-3">
+							<div class="header-logo">
+								<a href="#" class="logo">
+									<img src="./img/logo.png" alt="">
+								</a>
+							</div>
+						</div>
+						<!-- /LOGO -->
+
+						<!-- SEARCH BAR -->
+						<div class="col-md-6">
+							<div class="header-search">
+								<form method="POST">
+									{% csrf_token %}
+									<select name="stype" class="input-select">
+										<option value="0">Book Title</option>
+									</select>
+									<input type="text" class="input" placeholder="Search here" name="searchbox">
+									<button name="sbutton" class="search-btn">Search</button>
+								</form>
+							</div>
+						</div>
+						<!-- /SEARCH BAR -->
+
+						<!-- ACCOUNT -->
+						<div class="col-md-3 clearfix">
+							<div class="header-ctn">
+								<!-- Wishlist -->
+								<!-- <div>
+									<a href="#">
+										<i class="fa fa-heart-o"></i>
+										<span>Your Wishlist</span>
+										<div class="qty">2</div>
+									</a> -->
+								<!-- </div> -->
+								<!-- /Wishlist -->
+
+								<!-- Cart -->
+							
+								<!-- /Cart -->
+
+								<!-- Menu Toogle -->
+								<div class="menu-toggle">
+									<a href="#">
+										<i class="fa fa-bars"></i>
+										<span>Menu</span>
+									</a>
+								</div>
+								<!-- /Menu Toogle -->
+							</div>
+						</div>
+						<!-- /ACCOUNT -->
+					</div>
+					<!-- row -->
+				</div>
+				<!-- container -->
+			</div>
+			<!-- /MAIN HEADER -->
+		</header>
+		<!-- /HEADER -->
+
+		<!-- NAVIGATION -->
+		<nav id="navigation">
+			<!-- container -->
+			<div class="container">
+				<!-- responsive-nav -->
+				<div id="responsive-nav">
+					<!-- NAV -->
+					
+					<!-- /NAV -->
+				</div>
+				<!-- /responsive-nav -->
+			</div>
+			<!-- /container -->
+		</nav>
+		<!-- /NAVIGATION -->
+
+		<!-- SECTION -->
+		</div>
+		<!-- /SECTION -->
+		
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+						
+					<!-- section title -->
+					<div class="col-md-12">
+						<div class="section-title">
+							<h3 class="title">Books You have liked:</h3>
+							<div class="section-nav">
+								
+							</div>
+						</div>
+					</div>
+					<!-- /section title -->
+
+					<!-- Products tab & slick -->
+					<div class="col-md-12">
+						<div class="row">
+							<div class="products-tabs">
+								<!-- tab -->
+								<div id="tab1" class="tab-pane active">
+									<div class="products-slick" data-nav="#slick-nav-1">
+										
+							
+										{% for book in cartdsiplay %}	
+								
+										<!-- product -->
+										<div class="product">
+											<div class="product-img">
+												
+												<img src="{{book.bookimage}}" alt="">
+												
+												<div class="product-label">
+													<span class="new">NEW</span>
+												</div>
+											</div>
+											<div class="product-body">
+												
+												<p class="product-category">{{book.booktitle}}</p>
+												
+												<h3 class="product-name"><a href="#">{{book.booktitle}}</a></h3>
+												
+												
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star-o"></i>
+												</div>
+												<div class="product-btns">
+													
+													
+												</div>
+												<form>
+													
+													<a class="add-to-wishlist" href="/?booklikeid={{book.0}}" onlclick="myFunction()"><i class="fa fa-heart-o fa-1.5x"></i><span class="tooltipp"></span></a>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<a class="quick-view" href="/?bookid={{book.0}}"><i class="fa fa-eye fa-1.5x"></i><span class="tooltipp"></span></a>
+													
+												</form>
+											</div>
+											<div class="add-to-cart">
+												<form>
+													
+												<button class="add-to-cart-btn" type="hidden" name="bookid" value="{{book.bookid}}"> remove from Like</button>
+											</form>	
+											</div>
+										</div>
+										<!-- /product -->
+											
+										{% endfor %}
+										
+									</div>
+									<div id="slick-nav-1" class="products-slick-nav"></div>
+								</div>
+								<!-- /tab -->
+							</div>
+						</div>
+					</div>
+					<!-- Products tab & slick -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		
+
+		<!-- SECTION -->
+		
+		<!-- /SECTION -->
+
+		
+		<!-- FOOTER -->
+		
+			<!-- /top footer -->
+
+			<!-- bottom footer -->
+			{%endblock%}

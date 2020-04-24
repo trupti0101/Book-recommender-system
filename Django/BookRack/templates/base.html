@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title> Book Recommndation</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<!-- Google font -->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+		<!-- Bootstrap -->
+		<link type="text/css" rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}"/>
+
+		<!-- Slick -->
+		<link type="text/css" rel="stylesheet" href="{% static '/css/slick.css' %}"/>
+		<link type="text/css" rel="stylesheet" href="{% static 'css/slick-theme.css' %}"/>
+
+		<!-- nouislider -->
+		<link type="text/css" rel="stylesheet" href="{% static 'css/nouislider.min.css' %}"/>
+
+		<!-- Font Awesome Icon -->
+		<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+		<!-- Custom stlylesheet -->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}"/>
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css"/> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+        {% block login %}
+        {% endblock %}
+	
+    </head>
+	<body>
+		<!-- HEADER -->
+		<header>
+			<!-- TOP HEADER -->
+			<div id="top-header">
+				<div class="container">
+					<ul class="header-links pull-left">
+						<li><a href="#"><i class="fa fa-phone"></i> +91 1234567890</a></li>
+						<li><a href="#"><i class="fa fa-envelope-o"></i> sdpproject@gmail.com</a></li>
+						<li><a href="#"><i class="fa fa-map-marker"></i> Collage Road</a></li>
+					</ul>
+					<ul class="header-links pull-right">
+						<li class="active"><a href="{% url 'index' %}">Home</a></li>
+						<!--<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>-->
+						{% if user.is_authenticated %}
+						<li><font color="red";>Welcome,{{user.first_name}}</font></li>
+						<li><a href="{% url 'logout'%}">logout</a></li>
+                        {% else %}
+						<li><a href="{% url 'login' %}"><i class="fa fa-user-o"></i> login</a></li>
+						<li><a href="{% url 'register' %}"><i class="fa fa-user-o"></i> Register</a></li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+
+            {% block blk %}
+            {% endblock %}
+            <footer id="footer">
+                <!-- top footer -->
+                <div class="section">
+                    <!-- container -->
+                    <div class="container">
+                        <!-- row -->
+                        <div class="row">
+                            <div class="col-md-3 col-xs-6">
+                                <div class="footer">
+                                    <h3 class="footer-title">About Us</h3>
+                                    <p>This site is for book Recomndation. On the basis of user's history it recommands the book.</p>
+                                    <ul class="footer-links">
+                                        <li><a href="#"><i class="fa fa-map-marker"></i>Collage Road,Nadiad</a></li>
+                                        <li><a href="#"><i class="fa fa-phone"></i>+91 0123456789</a></li>
+                                        <li><a href="#"><i class="fa fa-envelope-o"></i>sdpproject@gmail.com</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+    
+                            <div class="col-md-3 col-xs-6">
+                                <div class="footer">
+                                    <h3 class="footer-title">Categories</h3>
+                                    <ul class="footer-links">
+                                        <li><a href="#"></a></li>
+                                        <li><a href="#">Author</a></li>
+                                        <li><a href="#">Genre</a></li>
+                                        <li><a href="#">Book Title</a></li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+    
+                            <div class="clearfix visible-xs"></div>
+    
+                            <div class="col-md-3 col-xs-6">
+                                <div class="footer">
+                                    <h3 class="footer-title">Information</h3>
+                                    <ul class="footer-links">
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">Contact Us</a></li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+    
+                            <div class="col-md-3 col-xs-6">
+                                <div class="footer">
+                                    <h3 class="footer-title">Service</h3>
+                                    <ul class="footer-links">
+                                        <li><a href="#">My Likes</a></li>
+                                        
+                                        <li><a href="#">Help</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /row -->
+                    </div>
+                    <!-- /container -->
+                </div>
+                <!-- /top footer -->
+    
+                <!-- bottom footer -->
+                <div id="bottom-footer" class="section">
+                    <div class="container">
+                        <!-- row -->
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                
+                                <span class="copyright">
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">TDRCE Team</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </span>
+                            </div>
+                        </div>
+                            <!-- /row -->
+                    </div>
+                    <!-- /container -->
+                </div>
+                <!-- /bottom footer -->
+            </footer>
+            <!-- /FOOTER -->
+    
+            <!-- jQuery Plugins -->
+            <script src="{% static 'js/jquery.min.js' %}"></script>
+            <script src="{% static 'js/bootstrap.min.js'%}"></script>
+            <script src="{% static 'js/slick.min.js'%}"></script>
+            <script src="{% static 'js/nouislider.min.js'%}"></script>
+            <script src="{% static 'js/jquery.zoom.min.js'%}%"></script>
+            <script src="{% static 'js/main.js'%}"></script>
+    
+        </body>
+    </html>
+    

@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load static %}
+    
+{% block blk %}
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login form</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->  
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap9.min.css' %}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome9.min.css' %}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+<!--===============================================================================================-->  
+    <link rel="stylesheet" type="text/css" href="{% static 'css/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/select2.min.css' %}">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/util8.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main8.css' %}">
+<!--===============================================================================================-->
+</head>
+<body>
+    
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+                    <img src="{% static 'img/img-01.png' %}" alt="IMG">
+                </div>
+
+                <form action="{% url 'login'%}" class="login100-form validate-form" method="POST">
+                    <span class="login100-form-title">
+                        Member Login
+                    </span>
+            
+    
+        <!-- <div class= "loginbox">
+        <img src="images/icon.jpeg" class="gjgk">
+            <h1>Login Here</h1>
+ -->            
+                <!-- <form action="{% url 'login' %}"   method="POST"> -->
+
+                {% csrf_token %} 
+    
+                <div class="wrap-input100 validate-input" >
+                <input type="text"   class="input100" placeholder="Enter User Name" name="username" required>
+                <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                <!-- <p>Password</p><br> -->
+                <div class="wrap-input100 validate-input">
+                <input type="password" class="input100" name="password" placeholder="Enter Password">
+                <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                </div>
+                    <div class="container-login100-form-btn">
+                <input type="submit"  class="login100-form-btn"  value="login"><br>
+            </div>
+        </form>
+
+
+                <div class="text-center p-t-12">
+                        <span class="txt1">
+                            Forgot
+                        </span>
+                        <a class="txt2" href="#">
+                            Username / Password?
+                        </a>
+                    </div>
+
+                    <div class="text-center p-t-136">
+                        <a class="txt2" href="{% url 'register' %}">
+                            Create your Account
+                            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                        </a>
+                    </div>
+               <!--<a href="abcc.html" target="_blank"><p>forgotten password?</p></a><br> 
+                <a href="register.html" target="_blank"><p>Don't have an account?</p></a>-->
+        
+            
+            <div>
+                {% for message in messages %} 
+                <h3 ><font color=red;>{{message}}</font><h3>
+        
+                {% endfor %}
+            </div>
+        </div>  
+    </div>
+</div>      
+<script>
+    $('#myForm').submit(function(){
+        var action = $(this).attr('action');
+        var that = $(this);
+        $.ajax({
+            url: action,
+            type: 'POST',
+            data: that.serialize()
+            ,success: function(data){
+                console.log('Success!');
+            }
+        });
+        return false;
+    });
+</script>
+        
+    </body>
+    </head>
+    {% endblock %}
+    

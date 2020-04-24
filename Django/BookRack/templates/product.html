@@ -1,0 +1,299 @@
+
+{% extends "base.html" %}
+{%load static%}
+{%block blk%}
+			<!-- MAIN HEADER -->
+			<div id="header">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<!-- LOGO -->
+						<div class="col-md-3">
+							<div class="header-logo">
+								<a href="#" class="logo">
+									<img src="./img/logo.png" alt="">
+								</a>
+							</div>
+						</div>
+						<!-- /LOGO -->
+
+						<!-- SEARCH BAR -->
+						<div class="col-md-6">
+							<div class="header-search">
+								<form method="POST">
+									{% csrf_token %}
+									<select name="stype" class="input-select">
+										<option value="0">Book Title</option>
+										
+									</select>
+									<input type="text" class="input" placeholder="Search here" name="searchbox">
+									<button name="sbutton" class="search-btn">Search</button>
+								</form>
+							</div>
+						</div>
+						<!-- /SEARCH BAR -->
+
+						<!-- ACCOUNT -->
+						<div class="col-md-3 clearfix">
+							<div class="header-ctn">
+								<!-- Wishlist -->
+								<!-- <div>
+									<a href="#">
+										<i class="fa fa-heart-o"></i>
+										<span>Your Wishlist</span>
+										<div class="qty">2</div>
+									</a>
+								</div> -->
+								<!-- /Wishlist -->
+
+								<!-- Cart -->
+								<div class="dropdown">
+									
+									<a class="dropdown-toggle" href="/wishlist">
+										<i class="fa fa-heart-o"></i>
+										<span>Show Liked books</span>
+										<div class="qty"></div>
+									</a>
+							
+								
+								</div>
+								<!-- /Cart -->
+
+								<!-- Menu Toogle -->
+								<div class="menu-toggle">
+									<a href="#">
+										<i class="fa fa-bars"></i>
+										<span>Menu</span>
+									</a>
+								</div>
+								<!-- /Menu Toogle -->
+							</div>
+						</div>
+						<!-- /ACCOUNT -->
+					</div>
+					<!-- row -->
+				</div>
+				<!-- container -->
+			</div>
+			<!-- /MAIN HEADER -->
+		</header>
+		<!-- /HEADER -->
+
+		<!-- NAVIGATION -->
+		<nav id="navigation">
+			<!-- container -->
+			<div class="container">
+				<!-- responsive-nav -->
+				<div id="responsive-nav">
+					<!-- NAV -->
+					<!-- /NAV -->
+				</div>
+				<!-- /responsive-nav -->
+			</div>
+			<!-- /container -->
+		</nav>
+		<!-- /NAVIGATION -->
+
+		<!-- BREADCRUMB -->
+	
+		<!-- /BREADCRUMB -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					
+					<!-- Product main img -->
+					<div class="col-md-5 col-md-push-2">
+						{% for book in viewbook%}
+							{{book.10}}
+						<div id="product-main-img">
+							<div class="product-preview">
+								<img src="{{book.12}}" alt="">
+							</div>
+
+							
+						</div>
+					</div>
+					<!-- /Product main img -->
+
+					<!-- Product thumb imgs -->
+					<div class="col-md-2  col-md-pull-5">
+						<div id="product-imgs">
+							<div class="product-preview">
+								<img src="{{book.12}}" alt="">
+							</div>
+						</div>
+					</div>
+					<!-- /Product thumb imgs -->
+
+					<!-- Product details -->
+					<div class="col-md-5">
+						<div class="product-details">
+							<h2 class="product-name">{{book.10}}</h2>
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;{{book.2}}</p>
+							<br>
+							<div>
+								<div class="product-rating">
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-o"></i>
+								</div>
+								<a class="review-link" href="#">10 Review(s) | Add your review</a>
+							</div>
+							<br>
+							<b>Author:</b> &nbsp;&nbsp;&nbsp;{{book.1}}<br>
+							<b>Genre:</b>&nbsp;&nbsp;&nbsp; {{book.11}}</h5><br>
+							<b>Format:</b> &nbsp;&nbsp;&nbsp;{{book.4}}</h5><br>	
+							<b>Edition:</b>&nbsp;&nbsp;&nbsp;{{book.3}}</h5><br>
+							<b>Price:</b>&nbsp;&nbsp;&nbsp;Rs. {{book.6}}</h5><br>
+							
+
+							<ul class="product-btns">
+								<li><a class="add-to-wishlist" href="/?booklikeid={{book.0}}" onlclick="myFunction()"><i class="fa fa-heart-o fa-1.5x"></i><span class="tooltipp"></span></a></li>
+								
+							</ul>
+
+							
+
+							
+						</div>
+					</div>
+					<!-- /Product details -->
+					{% endfor %}
+
+					<div class="col-md-12">
+						<div class="section-title text-center">
+							<h3 class="title">Simmilar Books</h3>
+						</div>
+					</div>
+
+					
+					<!-- Products tab & slick -->
+					<div class="col-md-12">
+						<div class="row">
+							<div class="products-tabs">
+								<!-- tab -->
+								<div id="tab1" class="tab-pane active">
+									<div class="products-slick" data-nav="#slick-nav-1">
+										
+							
+										{% for book in viewbook1 %}	
+								
+										<!-- product -->
+										<div class="product">
+											<div class="product-img">
+												<img src="{{book.12}}" alt="">
+										
+											</div>
+											<div class="product-body">
+												
+												<p class="product-category">{{book.1}}</p>
+												
+												<h3 class="product-name"><a href="#">{{book.10}}</a></h3>
+												
+												
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star-o"></i>
+												</div>
+												<div class="product-btns">
+													<span id = heart onclick="myfun()"><i class="fa fa-heart-o" aria-hidden="true" ></i> </span>
+													<form>
+														
+													<a class="add-to-wishlist" href="/?booklikeid={{book.0}}" onlclick="myFunction()"><i class="fa fa-heart-o fa-1.5x"></i><span class="tooltipp"></span></a>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<a class="quick-view" href="/?bookid={{book.0}}"><i class="fa fa-eye fa-1.5x"></i><span class="tooltipp"></span></a>
+													
+												</form>
+														</div>
+											</div>
+											<div class="add-to-cart">
+											
+											
+											<form method="POST">
+												{% csrf_token %}
+												<button class="add-to-cart-btn" type="hidden" name="viewbook" value="{{book.0}}"><i class="fa fa-eye"></i>Quick View</button>
+											</form>
+											</div>
+										</div>
+										<!-- /product -->
+											
+										{% endfor %}
+										
+									</div>
+									<div id="slick-nav-1" class="products-slick-nav"></div>
+								</div>
+								<!-- /tab -->
+							</div>
+						</div>
+					</div>
+					<!-- Products tab & slick -->
+
+					<!-- Product tab -->
+					<div class="col-md-12">
+						<div id="product-tab">
+							<!-- product tab nav -->
+							<ul class="tab-nav">
+								<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
+								<li><a data-toggle="tab" href="#tab2">Details</a></li>
+								<li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
+							</ul>
+							<!-- /product tab nav -->
+
+							<!-- product tab content -->
+							<div class="tab-content">
+								<!-- tab1  -->
+								<div id="tab1" class="tab-pane fade in active">
+									<div class="row">
+										<div class="col-md-12">
+											<p>{{bookdec.1}}</p>
+										</div>
+									</div>
+								</div>
+								<!-- /tab1  -->
+
+								<!-- tab2  -->
+								<div id="tab2" class="tab-pane fade in">
+									<div class="row">
+										<div class="col-md-12">
+											<p>{{bookdesc.2}}</p>
+										</div>
+									</div>
+								</div>
+								<!-- /tab2  -->
+								
+							</div>
+							<!-- /product tab content  -->
+						</div>
+					</div>
+					<!-- /product tab -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		<!-- Section -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /Section -->
+
+		{%endblock%}
