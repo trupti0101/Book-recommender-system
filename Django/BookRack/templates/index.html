@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {%load static%}
+{%block navbar%}
+						<li><font color="red";>Welcome,{{request.session.loginuser}}</font></li>
+						<li><a href="{% url 'logout'%}">logout</a></li>
+                        
+{%endblock%}
 {%block blk%}
 <script></script>
 <!-- /TOP HEADER -->
@@ -14,10 +19,16 @@
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="#" class="logo">
-									<img src="./img/logo.png" alt="">
+									<img  style="border-radius: 50%; margin-top: 15%"  src="/static/img/logob.png" alt="error">
+									
 								</a>
+
 							</div>
+							<br/>
+							<span><h3 style="color: #FFFFFF">YourReads</h3></span>
 						</div>
+
+
 						<!-- /LOGO -->
 
 						<!-- SEARCH BAR -->
@@ -52,9 +63,9 @@
 								<div class="dropdown">
 									
 									<a class="dropdown-toggle" href="/wishlist">
-										<i class="fa fa-heart-o"></i>
-										<span>Show Liked books</span>
-										<div class="qty"></div>
+										<i class="fa fa-star"></i>
+										<span>Show Rated books</span>
+	
 									</a>
 							
 								
@@ -120,8 +131,8 @@
 									<div class="products-slick" data-nav="#slick-nav-1">
 										
 							
-										{% for book in auth %}	
-								
+										{% for books in auth %}	
+											{% for book in books%}
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
@@ -135,35 +146,19 @@
 												<h3 class="product-name"><a href="#">{{book.10}}</a></h3>
 												
 												
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-o"></i>
-												</div>
-												<div class="product-btns">
-													<span id = heart onclick="myfun()"><i class="fa fa-heart-o" aria-hidden="true" ></i> </span>
-													<form>
-														
-													<a class="add-to-wishlist" href="/?booklikeid={{book.0}}" onlclick="myFunction()"><i class="fa fa-heart-o fa-1.5x"></i><span class="tooltipp"></span></a>
-													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<a class="quick-view" href="/?bookid={{book.0}}"><i class="fa fa-eye fa-1.5x"></i><span class="tooltipp"></span></a>
-													
-												</form>
-														</div>
+												
 											</div>
 											<div class="add-to-cart">
 											
 											
 											<form method="POST">
 												{% csrf_token %}
-												<button class="add-to-cart-btn" type="hidden" name="viewbook" value="{{book.0}}"><i class="fa fa-eye"></i>Quick View</button>
+												<button class="add-to-cart-btn" type="hidden" name="viewbook" value="{{book.0}}"><i class="fa fa-eye"></i>View Book Details</button>
 											</form>
 											</div>
 										</div>
 										<!-- /product -->
-											
+											{% endfor %}
 										{% endfor %}
 										
 									</div>
@@ -229,23 +224,11 @@ $(document).ready(function(){
 												<p class="product-category">{{book.1}}</p>
 												<h3 class="product-name"><a href="#">{{book.10}}</a></h3>
 												
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="product-btns">
-													<a class="add-to-wishlist" href="/?booklikeid={{book.0}}" onlclick="myFunction()"><i class="fa fa-heart-o fa-1.5x"></i><span class="tooltipp"></span></a>
-													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<a class="quick-view" href="/?bookid={{book.0}}"><i class="fa fa-eye fa-1.5x"></i><span class="tooltipp"></span></a>
-												</div>
 											</div>
 											<div class="add-to-cart">
 												<form method="POST">
 													{% csrf_token %}
-													<button class="add-to-cart-btn" type="hidden" name="viewbook" value="{{book.0}}"><i class="fa fa-eye"></i>Quick View</button>
+													<button class="add-to-cart-btn" type="hidden" name="viewbook" value="{{book.0}}"><i class="fa fa-eye"></i>View Book Details</button>
 												</form>
 											</div>
 										</div>

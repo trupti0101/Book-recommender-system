@@ -1,7 +1,13 @@
 
 {% extends "base.html" %}
 {%load static%}
+{%block navbar%}
+						<li><font color="red";>Welcome,{{request.session.loginuser}}</font></li>
+						<li><a href="{% url 'logout'%}">logout</a></li>
+                        
+{%endblock%}
 {%block blk%}
+
 			<!-- MAIN HEADER -->
 			<div id="header">
 				<!-- container -->
@@ -12,9 +18,13 @@
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="#" class="logo">
-									<img src="./img/logo.png" alt="">
+									<img  style="border-radius: 50%; margin-top: 15%"  src="/static/img/logob.png" alt="error">
+									
 								</a>
+
 							</div>
+							<br/>
+							<span><h3 style="color: #FFFFFF">YourReads</h3></span>
 						</div>
 						<!-- /LOGO -->
 
@@ -51,9 +61,8 @@
 								<div class="dropdown">
 									
 									<a class="dropdown-toggle" href="/wishlist">
-										<i class="fa fa-heart-o"></i>
-										<span>Show Liked books</span>
-										<div class="qty"></div>
+										<i class="fa fa-star"></i>
+										<span>Show Rated books</span>
 									</a>
 							
 								
@@ -129,6 +138,76 @@
 						</div>
 					</div>
 					<!-- /Product thumb imgs -->
+<style>
+    .rating {
+    unicode-bidi: bidi-override;
+    color: #c5c5c5;
+    font-size: 25px;
+    height: 25px;
+    width: 100px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0;
+    text-shadow: 0px 1px 0 #a2a2a2;
+  }
+  
+  .rating-upper {
+    color: #e7711b;
+    padding: 0;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+  }
+  
+  .rating-lower {
+    padding: 0;
+    display: flex;
+    z-index: 0;
+  }
+  
+  </style>
+  
+  <style>
+    .rate {
+    display: inline-block;
+    border: 0;
+    }
+    .rate > input {
+        display: none;
+    }
+    .rate > label {
+        float: right;
+    }
+    .rate > label:before {
+        display: inline-block;
+        font-size: 1.5rem;
+        padding: .3rem .2rem;
+        margin: 0;
+        cursor: pointer;
+        font-family: FontAwesome;
+        content: "\f005 "; 
+    }
+    .rate > label:last-child:before {
+        content: "\f006 "; 
+    }
+    .rate .half:before {
+        content: "\f089 ";
+        position: absolute;
+        padding-right: 0;
+    }
+    input:checked ~ label, 
+    label:hover, label:hover ~ label { color: #e7711b;  } 
+
+    input:checked + label:hover, input:checked ~ label:hover,
+    input:checked ~ label:hover ~ label, 
+    label:hover ~ input:checked ~ label { color: rgb(235, 160, 55);  } 
+
+  </style>
+
+
 
 					<!-- Product details -->
 					<div class="col-md-5">
@@ -137,16 +216,28 @@
 							<p>&nbsp;&nbsp;&nbsp;&nbsp;{{book.2}}</p>
 							<br>
 							<div>
-								<div class="product-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
-								</div>
-								<a class="review-link" href="#">10 Review(s) | Add your review</a>
+								<b>Average Rating:</b>
+							<div class="rating">
+								
+								<div class="rating-upper" style="width: {{avgrating}}%">
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                          </div>
+                          <div class="rating-lower">
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                          </div>
+							</div>		
+								
 							</div>
 							<br>
+							<b>Total Ratings:</b> &nbsp;&nbsp;&nbsp;{{book.8}}<br>
 							<b>Author:</b> &nbsp;&nbsp;&nbsp;{{book.1}}<br>
 							<b>Genre:</b>&nbsp;&nbsp;&nbsp; {{book.11}}</h5><br>
 							<b>Format:</b> &nbsp;&nbsp;&nbsp;{{book.4}}</h5><br>	
@@ -154,11 +245,50 @@
 							<b>Price:</b>&nbsp;&nbsp;&nbsp;Rs. {{book.6}}</h5><br>
 							
 
-							<ul class="product-btns">
-								<li><a class="add-to-wishlist" href="/?booklikeid={{book.0}}" onlclick="myFunction()"><i class="fa fa-heart-o fa-1.5x"></i><span class="tooltipp"></span></a></li>
-								
-							</ul>
-
+							{% if test.0 %}    
+                  <tr><td><b>Given Rating  </b> </td><td>:</td><td> 
+                    <div class="rating mb-2">
+                        <div class="rating-upper" style="width: {{ test.1 }}%">
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                        </div>
+                        <div class="rating-lower">
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                        </div>
+                    </div><td></tr>  
+              </table>                         
+                  {% else %}
+                  <tr><td><b>Give Rating  </b> </td><td>:</td><td> 
+                    <form class="text-center" method="POST">
+                    	{% csrf_token %}
+                        <fieldset class="rate">
+                            <input type="radio" id="rating10" name="rating" value="5" /><label for="rating10" title="5 stars"></label>
+                            <input type="radio" id="rating8" name="rating" value="4" /><label for="rating8" title="4 stars"></label>
+                            <input type="radio" id="rating6" name="rating" value="3" /><label for="rating6" title="3 stars"></label>
+                            <input type="radio" id="rating4" name="rating" value="2" /><label for="rating4" title="2 stars"></label>
+                            <input type="radio" id="rating2" name="rating" value="1" /><label for="rating2" title="1 star"></label>
+                            <input type="radio" id="rating1" name="rating" value="0.5" /><label class="half" for="rating1" title="1/2 star"></label>
+                        
+                        </fieldset>
+                     
+                  </td></tr>
+                  
+              </table> 
+              <input type="hidden" name="link" value="bookInfo">
+              <input type="hidden" name="bookId" value="{{book.0}}">
+               <br/>
+               <br/>  
+              <button class="btn btn-outline-secondary btn-primary"  type="submit">Submit</button>
+                      
+            </form> 
+            {% endif %}
 							
 
 							
@@ -198,30 +328,14 @@
 												<h3 class="product-name"><a href="#">{{book.10}}</a></h3>
 												
 												
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-o"></i>
-												</div>
-												<div class="product-btns">
-													<span id = heart onclick="myfun()"><i class="fa fa-heart-o" aria-hidden="true" ></i> </span>
-													<form>
-														
-													<a class="add-to-wishlist" href="/?booklikeid={{book.0}}" onlclick="myFunction()"><i class="fa fa-heart-o fa-1.5x"></i><span class="tooltipp"></span></a>
-													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<a class="quick-view" href="/?bookid={{book.0}}"><i class="fa fa-eye fa-1.5x"></i><span class="tooltipp"></span></a>
-													
-												</form>
-														</div>
+												
 											</div>
 											<div class="add-to-cart">
 											
 											
 											<form method="POST">
 												{% csrf_token %}
-												<button class="add-to-cart-btn" type="hidden" name="viewbook" value="{{book.0}}"><i class="fa fa-eye"></i>Quick View</button>
+												<button class="add-to-cart-btn" type="hidden" name="viewbook" value="{{book.0}}"><i class="fa fa-eye"></i>View Book Details</button>
 											</form>
 											</div>
 										</div>
@@ -241,14 +355,7 @@
 					<!-- Product tab -->
 					<div class="col-md-12">
 						<div id="product-tab">
-							<!-- product tab nav -->
-							<ul class="tab-nav">
-								<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
-								<li><a data-toggle="tab" href="#tab2">Details</a></li>
-								<li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
-							</ul>
-							<!-- /product tab nav -->
-
+							
 							<!-- product tab content -->
 							<div class="tab-content">
 								<!-- tab1  -->

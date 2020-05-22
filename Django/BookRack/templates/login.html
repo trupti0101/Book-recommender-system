@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
+{% block navbar%}
+                        <li><a href="{% url 'login' %}"><i class="fa fa-user-o"></i> login</a></li>
+                        <li><a href="{% url 'register' %}"><i class="fa fa-user-o"></i> Register</a></li>
+                        
+{% endblock%}
     
 {% block blk %}
     <!DOCTYPE html>
@@ -49,7 +54,7 @@
                 {% csrf_token %} 
     
                 <div class="wrap-input100 validate-input" >
-                <input type="text"   class="input100" placeholder="Enter User Name" name="username" required>
+                <input type="text"   class="input100" placeholder="Enter Email Id" name="username" required>
                 <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -69,15 +74,7 @@
         </form>
 
 
-                <div class="text-center p-t-12">
-                        <span class="txt1">
-                            Forgot
-                        </span>
-                        <a class="txt2" href="#">
-                            Username / Password?
-                        </a>
-                    </div>
-
+                
                     <div class="text-center p-t-136">
                         <a class="txt2" href="{% url 'register' %}">
                             Create your Account

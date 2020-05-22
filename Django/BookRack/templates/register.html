@@ -1,6 +1,11 @@
 
 {% extends "base.html" %}
 {% load static %}
+{% block navbar%}
+                        <li><a href="{% url 'login' %}"><i class="fa fa-user-o"></i> login</a></li>
+                        <li><a href="{% url 'register' %}"><i class="fa fa-user-o"></i> Register</a></li>
+                        
+{% endblock%}
     
 {% block blk %}
   <!DOCTYPE html>
@@ -10,7 +15,7 @@
     <!-- Required meta tags-->
 
     <!-- Title Page-->
-    <title>register form</title>
+    <title>registeration form</title>
 
     <!-- Icons font CSS-->
     <link href="{% static 'css/material-design-iconic-font08.min.css' %}" rel="stylesheet" media="all">
@@ -45,67 +50,14 @@
                     <!-- <label class="label">first name</label>     -->
                     <input type="text" class="input--style-4"  placeholder="Enter First Name" name="first_name" required><br>
                      </div> <br>
-                    
-                	<!-- </div> -->
-                                 <!-- <div class="col-2">
-                                <div class="input-group"> -->
-                                    <!-- <label class="label">last name</label> -->
+                         <div>
+                                    <input class="input--style-4" placeholder="Enter Last Name"  type="text" name="last_name" required>
+                                    </div><br> 
                                     <div>
-                                    <input class="input--style-4" placeholder="Enter Last Name"  type="text" name="last_name">
-                                    </div><br>                                <!-- </div>
-                            </div>
-                        </div> -->
-                <!--         <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Birthday</label>
-                                    <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker"  placeholder="Select Your birthdate" type="text" name="birthday">
-                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Gender</label>
-                                    <div class="p-t-10">
-                                        <label class="radio-container m-r-45">Male
-                                            <input type="radio" checked="checked" name="gender">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="radio-container">Female
-                                            <input type="radio" name="gender">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                        <!-- <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group"> -->
-                                    <!-- <label class="label">Email</label> -->
-                                    <div>
-                                    <input class="input--style-4" type="email"  placeholder="Enter Your Email" name="email"><br>
+                                    <input class="input--style-4" type="email"  placeholder="Enter EmailID" name="email" required><br>
                                     </div><br>
-                                    <!-- </div>
-                                    
-                            </div> -->
-                            <!-- <div class="col-2">
-                                <div class="input-group"> -->
-                                    <!-- <label class="label">User name</label> -->
                                     <div>
-                                    <input class="input--style-4" type="text" placeholder="Create Your Username" name="username"><br>
-                                    </div><br>
-                                    <!-- </div>
-                            </div>
-                        </div> -->
-                         <!-- <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group"> -->
-                                    <!-- <label class="label">Password</label> -->
-                                    <div>
-                                    <input class="input--style-4" type="password"  placeholder="Enter Password" name="password1"><br>
+                                    <input class="input--style-4" type="password"  placeholder="Enter Password" name="password1" required><br>
                                     </div><br>
                                     <!-- </div>
                             </div> -->
@@ -113,39 +65,19 @@
                                 <div class="input-group"> -->
                                     <!-- <label class="label">Confirm password</label> -->
                                     <div>
-                                    <input class="input--style-4" type="password"  placeholder="Confirm Password" name="password2"><br>
-                                    </div><br>
+                                    <input class="input--style-4" type="password"  placeholder="Confirm Password" name="password2" required><br>
+
+                                    </div><br/><br/>
+                                    {% for message in messages %}
+                                    <p style="font-size: 20px" class="text-danger">{{message}}</p>
+                                    {% endfor %}
                                     <!-- </div>
                             </div>
                         </div>
                         <div class="input-group"> -->
                             <!-- <label class="label">Subject</label> -->
-                            <div class="rs-select2 js-select-simple select--no-search">
-                                
-                                <select  name="Interest">
-                                   
-                                    <option value="Young Adult">Young Adult</option>
-                                    <option value="Fiction">Fiction</option>
-                                    <option value="Science Fiction">Science Fiction</option>
-                                    <option value="Fantasy">Fantasy</option>
-                                    <option value="Dystopia">Dystopia</option>
-                                    <option value="Classics">Classics</option>
-                                    <option value="Historical">Historical</option>
-                                    <option value="Romance">Romance</option>
-                                    <option value="Contemporary">Contemporary</option>
-                                    <option value="Humor">Humor</option>
-                                    <option value="Mystery">Mystery</option>
-                                    <option value="Philosophy">Philosophy</option>
-                                    <option value="Religion">Religion</option>
-                                    <option value="Horror">Horror</option>
-                                    <option value="Plays">Plays</option>
-                                    <option value="Thriller">Thriller</option>
-                                    <option value="Childrens">Childrens</option>
-                                    <option value="Picture Books">Picture Books</option>
-                                </select>
-                           
-                                <div class="select-dropdown"></div>
-                            </div>
+                            <!-- 
+                             -->
                         </div><br>
                         <div class="p-t-15">
                              <input type="submit" value="register" class="btn btn--radius-2 btn--blue">
@@ -166,12 +98,7 @@
     <script src="{% static 'vendor/global.js' %}"></script>
 
 
-    <div>
-        {% for message in messages %} 
-        <h3>{{message}}<h3>
-
-        {% endfor %}
-    </div>
+    
 </body>
 
 </html>

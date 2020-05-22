@@ -42,20 +42,17 @@
 			<div id="top-header">
 				<div class="container">
 					<ul class="header-links pull-left">
-						<li><a href="#"><i class="fa fa-phone"></i> +91 1234567890</a></li>
-						<li><a href="#"><i class="fa fa-envelope-o"></i> sdpproject@gmail.com</a></li>
-						<li><a href="#"><i class="fa fa-map-marker"></i> Collage Road</a></li>
+						<li><a href="#"><i class="fa fa-phone"></i> +91 9106473664</a></li>
+						<li><a href="#"><i class="fa fa-envelope-o"></i> truptidl0101@gmail.com</a></li>
+						<li><a href="#"><i class="fa fa-map-marker"></i> Collage Road, Nadiad</a></li>
 					</ul>
 					<ul class="header-links pull-right">
 						<li class="active"><a href="{% url 'index' %}">Home</a></li>
 						<!--<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>-->
-						{% if user.is_authenticated %}
-						<li><font color="red";>Welcome,{{user.first_name}}</font></li>
-						<li><a href="{% url 'logout'%}">logout</a></li>
-                        {% else %}
-						<li><a href="{% url 'login' %}"><i class="fa fa-user-o"></i> login</a></li>
-						<li><a href="{% url 'register' %}"><i class="fa fa-user-o"></i> Register</a></li>
-						{% endif %}
+						{% block navbar%}
+                        {% endblock%}
+
+                        
 					</ul>
 				</div>
 			</div>
@@ -69,19 +66,19 @@
                     <div class="container">
                         <!-- row -->
                         <div class="row">
-                            <div class="col-md-3 col-xs-6">
+                            
                                 <div class="footer">
                                     <h3 class="footer-title">About Us</h3>
-                                    <p>This site is for book Recomndation. On the basis of user's history it recommands the book.</p>
+                                    <p>This site is for book Recommendation. On the basis of user's history it recommends the book. Users can also search and rate the book. We made this site as our college term project. It will be upgraded in future. </p>
                                     <ul class="footer-links">
-                                        <li><a href="#"><i class="fa fa-map-marker"></i>Collage Road,Nadiad</a></li>
-                                        <li><a href="#"><i class="fa fa-phone"></i>+91 0123456789</a></li>
-                                        <li><a href="#"><i class="fa fa-envelope-o"></i>sdpproject@gmail.com</a></li>
+                                        <li><a href="#"><i class="fa fa-map-marker"></i>Collage Road, Nadiad, Gujarat, India.</a></li>
+                                        <li><a href="#"><i class="fa fa-phone"></i>+91 9106473664</a></li>
+                                        <li><a href="#"><i class="fa fa-envelope-o"></i>truptidl0101@gmail.com</a></li>
                                     </ul>
                                 </div>
-                            </div>
+                            
     
-                            <div class="col-md-3 col-xs-6">
+                            <!-- <div class="col-md-3 col-xs-6">
                                 <div class="footer">
                                     <h3 class="footer-title">Categories</h3>
                                     <ul class="footer-links">
@@ -116,7 +113,7 @@
                                         <li><a href="#">Help</a></li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <!-- /row -->
                     </div>
@@ -133,7 +130,7 @@
                                 
                                 <span class="copyright">
                                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">TDRCE Team</a>
+                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">TDRCE Team</a> and website back-end is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by Trupti Langalia.
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                 </span>
                             </div>

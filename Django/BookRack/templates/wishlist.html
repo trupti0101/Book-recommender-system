@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
+{%block navbar%}
+						<li><font color="red";>Welcome,{{request.session.loginuser}}</font></li>
+						<li><a href="{% url 'logout'%}">logout</a></li>
+                        
+{%endblock%}
 {% block blk %}
 			<!-- /TOP HEADER -->
 
@@ -13,9 +18,13 @@
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="#" class="logo">
-									<img src="./img/logo.png" alt="">
+									<img  style="border-radius: 50%; margin-top: 15%"  src="/static/img/logob.png" alt="error">
+									
 								</a>
+
 							</div>
+							<br/>
+							<span><h3 style="color: #FFFFFF">YourReads</h3></span>
 						</div>
 						<!-- /LOGO -->
 
@@ -101,7 +110,7 @@
 					<!-- section title -->
 					<div class="col-md-12">
 						<div class="section-title">
-							<h3 class="title">Books You have liked:</h3>
+							<h3 class="title">Books You have rated:</h3>
 							<div class="section-nav">
 								
 							</div>
@@ -118,55 +127,37 @@
 									<div class="products-slick" data-nav="#slick-nav-1">
 										
 							
-										{% for book in cartdsiplay %}	
-								
+										{% for books in cartdisplay %}	
+
+											{% for book in books%}
+										
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												
-												<img src="{{book.bookimage}}" alt="">
-												
-												<div class="product-label">
-													<span class="new">NEW</span>
-												</div>
+												<img src="{{book.12}}" alt="">
+										
 											</div>
 											<div class="product-body">
 												
-												<p class="product-category">{{book.booktitle}}</p>
+												<p class="product-category">{{book.1}}</p>
 												
-												<h3 class="product-name"><a href="#">{{book.booktitle}}</a></h3>
+												<h3 class="product-name"><a href="#">{{book.10}}</a></h3>
 												
 												
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-o"></i>
-												</div>
-												<div class="product-btns">
-													
-													
-												</div>
-												<form>
-													
-													<a class="add-to-wishlist" href="/?booklikeid={{book.0}}" onlclick="myFunction()"><i class="fa fa-heart-o fa-1.5x"></i><span class="tooltipp"></span></a>
-													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<a class="quick-view" href="/?bookid={{book.0}}"><i class="fa fa-eye fa-1.5x"></i><span class="tooltipp"></span></a>
-													
-												</form>
+												
 											</div>
 											<div class="add-to-cart">
-												<form>
-													
-												<button class="add-to-cart-btn" type="hidden" name="bookid" value="{{book.bookid}}"> remove from Like</button>
-											</form>	
+											
+											
+											<form method="POST" action="/">
+												{% csrf_token %}
+												<button class="add-to-cart-btn" type="hidden" name="viewbook" value="{{book.0}}"><i class="fa fa-eye"></i>View Book Details</button>
+											</form>
 											</div>
 										</div>
 										<!-- /product -->
-											
 										{% endfor %}
-										
+									{% endfor %}								
 									</div>
 									<div id="slick-nav-1" class="products-slick-nav"></div>
 								</div>
