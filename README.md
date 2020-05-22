@@ -1,4 +1,4 @@
-# Book-recommander-system
+# Book-recommender-system
 A Book Recommendation System using Django framework
 
 ### Description of File Structure:
